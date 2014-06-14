@@ -18,7 +18,7 @@
 				<email><![CDATA[myphpbbmods@gmail.com]]></email>
 			</author>
 		</author-group>
-		<mod-version>0.2</mod-version>
+		<mod-version>0.3</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -33,9 +33,9 @@
 			<edit>
 				<find><![CDATA[// Start assigning vars for main posting page ...
 $template->assign_vars(array(]]></find>
-				<action type="after-add"><![CDATA[	'TOPIC_ID'					=> $post_data['topic_id'],
+				<action type="after-add"><![CDATA[	'TOPIC_ID'					=> (isset($post_data['topic_id'])) ? $post_data['topic_id'] : '',
 	'MODE'						=> $mode,
-	'TOPIC_CUR_POST_ID'			=> (isset($post_data['topic_cur_post_id']) && !is_null($post_data['topic_cur_post_id'])) ? $post_data['topic_cur_post_id'] : $post_data['topic_last_post_id'],]]></action>
+	'TOPIC_CUR_POST_ID'			=> (isset($post_data['topic_cur_post_id'])) ? $post_data['topic_cur_post_id'] : isset($post_data['topic_last_post_id']) ? $post_data['topic_last_post_id'] : '',]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/posting_editor.html">
